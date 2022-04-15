@@ -63,7 +63,7 @@ function validateForm(): LoginFormValidation {
 
 async function submitForm(): Promise<void> {
     validationErrors.value = validateForm();
-    if ( Object.keys(validationErrors.value).length !== 0) {
+    if (Object.keys(validationErrors.value).length !== 0) {
         return;
     }
 

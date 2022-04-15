@@ -105,7 +105,7 @@ function validateForm(): RegisterFormValidation {
 
 async function submitForm(): Promise<void> {
     validationErrors.value = validateForm();
-    if ( Object.keys(validationErrors.value).length !== 0) {
+    if (Object.keys(validationErrors.value).length !== 0) {
         return;
     }
 
@@ -117,7 +117,7 @@ async function submitForm(): Promise<void> {
     if (error.value) {
         validationErrors.value = error.value?.response?.data.errors;
     } else {
-        console.log(data.value)
+        console.log(data.value);
     }
 }
 </script>
