@@ -17,7 +17,7 @@ const selectOptions = ref<{ key: number; label: string; value: number }[]>([
     { key: 2, label: "No", value: 0 },
     { key: 3, label: "Maybe", value: 0.5 },
 ]);
-const selected = ref<string>(selectOptions.value[0].label);
+const selected = ref<{ key: number; label: string; value: number }>(selectOptions.value[0]);
 
 const checked = ref<boolean>(false);
 

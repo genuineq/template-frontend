@@ -1,13 +1,13 @@
 <template>
     <div class="fixed top-16 w-72">
-        <Combobox v-model="selected">
+        <Combobox v-model="selected" @update:modelValue="$emit('update:modelValue', selected)">
             <div class="relative mt-1">
                 <div
                     class="relative w-full cursor-default overflow-hidden rounded-lg bg-white text-left shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-teal-300 sm:text-sm"
                 >
                     <ComboboxInput
                         class="w-full border-none py-2 pl-3 pr-10 text-sm leading-5 text-gray-900 outline-none focus:ring-0"
-                        :displayValue="(option) => option.value"
+                        :displayValue="(option) => option.label"
                         @change="query = $event.target.value"
                     />
                     <ComboboxButton class="absolute inset-y-0 right-0 flex items-center pr-2">
@@ -31,7 +31,7 @@
                         </div>
 
                         <ComboboxOption
-                            v-for="option in options"
+                            v-for="option in filteredOptions"
                             as="template"
                             :key="option.key"
                             :value="option"
@@ -67,7 +67,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed, watch } from "vue";
+import { ref, computed } from "vue";
 import {
     Combobox,
     ComboboxInput,
@@ -81,26 +81,21 @@ const props = withDefaults(
     defineProps<{
         options: { key: number; label: string; value: number }[];
         label?: string;
-        modelValue?: string | number;
+        modelValue: { key: number; label: string; value: number };
         error?: string;
     }>(),
     {
         label: "",
-        modelValue: "",
         error: "",
     }
 );
 
-const emits = defineEmits<{
-    (event: "update:modelValue", value: string | number): void;
+defineEmits<{
+    (event: "update:modelValue", value: { key: number; label: string; value: number }): void;
 }>();
 
-let selected = ref(props.options[0]);
+let selected = ref(props.modelValue);
 let query = ref("");
-
-watch(selected, async (newSelection) => {
-    emits("update:modelValue", newSelection.label);
-});
 
 let filteredOptions = computed(() =>
     query.value === ""
