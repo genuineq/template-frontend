@@ -1,9 +1,8 @@
 import { defineStore } from "pinia";
-import { ref } from "vue";
-import { useLocalStorage, type RemovableRef } from "@vueuse/core";
+import { useLocalStorage } from "@vueuse/core";
 
 export const useAuthStore = defineStore("auth", () => {
-    const token = ref(useLocalStorage("authUser", ""));
+    const token = useLocalStorage("authUser", "");
 
     return { token };
 });
