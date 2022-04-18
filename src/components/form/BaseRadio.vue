@@ -8,12 +8,7 @@
             :checked="props.modelValue === props.value"
             :value="props.value"
             @change="$emit('update:modelValue', props.value)"
-            :aria-describedby="props.error ? `${id}-error` : undefined"
-            :aria-invalid="props.error ? true : undefined"
         />
-        <p aria-live="assertive" :id="`${id}-error`" v-if="props.error">
-            {{ props.error }}
-        </p>
     </div>
 </template>
 
@@ -26,13 +21,11 @@ const props = withDefaults(
         label?: string;
         modelValue?: string | number;
         value: string | number;
-        error?: string;
     }>(),
     {
         label: "",
         modelValue: "",
         value: "",
-        error: "",
     }
 );
 
