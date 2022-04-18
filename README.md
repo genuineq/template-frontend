@@ -107,3 +107,7 @@ With the help of the useLocalStorage composable, we have reactive and persisted 
 ### ESlint and Prettier setup
 
 For linting I have used eslint and for formatting I have used prettier. Both have config files for overrides in the root of the folder. In addition to those two files, there is an additional file calld .editorconfig that also does some formating for us on save.
+
+### Common auth routes already done (login, register, recover and reset password, logout)
+
+I have implemented a minimal setup for all the basic auth flow. The requests have been sent to the [template-backend](https://github.com/genuineq/template-backend) repo made with laravel.
