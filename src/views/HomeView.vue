@@ -4,6 +4,7 @@ import BaseToggle from "@/components/form/BaseToggle.vue";
 import BaseRadioGroup from "@/components/form/BaseRadioGroup.vue";
 import BaseModal from "@/components/common/BaseModal.vue";
 import { ref } from "vue";
+import type { Test } from "@/models/common";
 
 const selectedRadio = ref<number>(0);
 const testRadioOptions = ref<{ label: string; value: number }[]>([
@@ -12,12 +13,12 @@ const testRadioOptions = ref<{ label: string; value: number }[]>([
     { label: "Maybe", value: 0.5 },
 ]);
 
-const selectOptions = ref<{ key: number; label: string; value: number }[]>([
+const selectOptions = ref<Test[]>([
     { key: 1, label: "Yes", value: 1 },
     { key: 2, label: "No", value: 0 },
     { key: 3, label: "Maybe", value: 0.5 },
 ]);
-const selected = ref<{ key: number; label: string; value: number }>(selectOptions.value[0]);
+const selected = ref<Test>(selectOptions.value[0]);
 
 const checked = ref<boolean>(false);
 

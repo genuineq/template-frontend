@@ -7,7 +7,7 @@
                 >
                     <ComboboxInput
                         class="w-full border-none py-2 pl-3 pr-10 text-sm leading-5 text-gray-900 outline-none focus:ring-0"
-                        :displayValue="(option) => option.label"
+                        :displayValue="(option) => (option as Test).label"
                         @change="query = $event.target.value"
                     />
                     <ComboboxButton class="absolute inset-y-0 right-0 flex items-center pr-2">
@@ -76,12 +76,13 @@ import {
     ComboboxOption,
     TransitionRoot,
 } from "@headlessui/vue";
+import type { Test } from "@/models/common";
 
 const props = withDefaults(
     defineProps<{
-        options: { key: number; label: string; value: number }[];
+        options: Test[];
         label?: string;
-        modelValue: { key: number; label: string; value: number };
+        modelValue: Test;
         error?: string;
     }>(),
     {
@@ -91,7 +92,7 @@ const props = withDefaults(
 );
 
 defineEmits<{
-    (event: "update:modelValue", value: { key: number; label: string; value: number }): void;
+    (event: "update:modelValue", value: Test): void;
 }>();
 
 let selected = ref(props.modelValue);
