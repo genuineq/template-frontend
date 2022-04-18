@@ -23,7 +23,7 @@ import { ref } from "vue";
 import { useAxios } from "@vueuse/integrations/useAxios";
 import { useRoute } from "vue-router";
 
-const route = useRoute()
+const route = useRoute();
 
 const password = ref<string>("");
 
