@@ -9,7 +9,6 @@
                 <RouterLink :to="{ name: 'Login' }">Login</RouterLink>
                 <RouterLink :to="{ name: 'Register' }">Register</RouterLink>
                 <RouterLink :to="{ name: 'RecoverPassword' }">Recover</RouterLink>
-                <RouterLink :to="{ name: 'ResetPassword' }">Reset</RouterLink>
             </nav>
         </div>
     </header>
