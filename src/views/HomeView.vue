@@ -5,6 +5,7 @@ import BaseRadioGroup from "@/components/form/BaseRadioGroup.vue";
 import BaseModal from "@/components/common/BaseModal.vue";
 import { ref } from "vue";
 import type { Test } from "@/models/common";
+import { useCounterStore } from "@/stores/counter";
 
 const selectedRadio = ref<number>(0);
 const testRadioOptions = ref<{ label: string; value: number }[]>([
@@ -23,6 +24,10 @@ const selected = ref<Test>(selectOptions.value[0]);
 const checked = ref<boolean>(false);
 
 const testModal = ref(false);
+
+const counter = useCounterStore();
+
+console.log(counter.ability)
 </script>
 
 <template>
