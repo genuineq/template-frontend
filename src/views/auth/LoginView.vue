@@ -28,16 +28,7 @@ import BaseInput from "@/components/form/BaseInput.vue";
 import { ref } from "vue";
 import { useAxios } from "@vueuse/integrations/useAxios";
 import { useAuthStore } from "@/stores/auth";
-
-interface LoginForm {
-    email: string;
-    password: string;
-}
-
-interface LoginFormValidation {
-    email?: string[];
-    password?: string[];
-}
+import type { LoginForm, LoginFormValidation } from "@/models/login";
 
 const auth = useAuthStore();
 
