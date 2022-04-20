@@ -1,4 +1,4 @@
-# Vue 3 framwork template with Vite
+# Vue 3 framework template with Vite
 
 ## Project Setup
 
