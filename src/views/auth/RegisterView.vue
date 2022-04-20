@@ -45,22 +45,7 @@ import { ref } from "vue";
 import { useAxios } from "@vueuse/integrations/useAxios";
 import BaseInput from "@/components/form/BaseInput.vue";
 import BaseCheckbox from "@/components/form/BaseCheckbox.vue";
-
-interface RegisterForm {
-    email: string;
-    password: string;
-    password_confirmation: string;
-    name: string;
-    tandc: boolean;
-}
-
-interface RegisterFormValidation {
-    email?: string[];
-    password?: string[];
-    name?: string[];
-    password_confirmation?: string[];
-    tandc?: string[];
-}
+import type { RegisterForm, RegisterFormValidation } from "@/models/register";
 
 const registerForm = ref<RegisterForm>({
     email: "",
