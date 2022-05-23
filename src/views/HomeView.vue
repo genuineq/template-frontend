@@ -27,10 +27,17 @@ const testModal = ref(false);
 
 const counter = useCounterStore();
 
-console.log(counter.ability)
+console.log(counter.ability);
+
+import { useNow } from '@vueuse/core'
+
+const now = useNow()
 </script>
 
 <template>
+    <div>
+        {{ now.toLocaleTimeString() }}
+    </div>
     <main>Home</main>
     {{ $t("test") }}
     <div>

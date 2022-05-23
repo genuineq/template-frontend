@@ -111,3 +111,57 @@ For linting I have used eslint and for formatting I have used prettier. Both hav
 ### Common auth routes already done (login, register, recover and reset password, logout)
 
 I have implemented a minimal setup for all the basic auth flow. The requests have been sent to the [template-backend](https://github.com/genuineq/template-backend) repo made with laravel.
+
+### Packages and versions
+
+#### Main dependencies
+- vue: ^3.2.32
+- vue-i18n: ^9.1.9
+- vue-router: ^4.0.14
+- pinia: ^2.0.13
+- axios: ^0.26.1
+- @headlessui/vue: ^1.5.0
+- @vueuse/core: ^8.2.5
+- @vueuse/integrations: ^8.2.5
+- uuid: ^8.3.2
+
+#### Main dev dependencies
+- @intlify/vite-plugin-vue-i18n: ^3.4.0,
+- @rushstack/eslint-patch: ^1.1.0,
+- @tailwindcss/forms: ^0.5.0,
+- @types/jsdom: ^16.2.14,
+- @types/node: ^16.11.26,
+- @types/uuid: ^8.3.4,
+- @vitejs/plugin-vue: ^2.3.1,
+- @vue/eslint-config-prettier: ^7.0.0,
+- @vue/eslint-config-typescript: ^10.0.0,
+- @vue/test-utils: ^2.0.0-rc.18,
+- @vue/tsconfig: ^0.1.3,
+- autoprefixer: ^10.4.4,
+- eslint: ^8.5.0,
+- eslint-plugin-vue: ^8.2.0,
+- jsdom: ^19.0.0,
+- postcss: ^8.4.12,
+- prettier: ^2.5.1,
+- prettier-plugin-tailwindcss: ^0.1.8,
+- tailwindcss: ^3.0.23,
+- typescript: ~4.6.3,
+- vite: ^2.9.1,
+- vitest: ^0.8.1,
+- vue-tsc: ^0.33.9
+
+### Folder structure (src)
+- assets: images, css and fonts
+- components: reusable components throughout the app
+- composables: reusable vue 3 specific functionality
+- locales: translation files
+- models: reusable typescript types and interfaces
+- router: routing configuration for the project
+- stores: contains pinia stores, each file is a store
+- utils: diverse utility functions
+- views: all the pages
+
+### How to use the template
+I have set the project up in github as a template. Instead of cloning the project, github provides a button where you can start a new repository from this template.
+
+
