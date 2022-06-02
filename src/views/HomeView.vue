@@ -29,14 +29,19 @@ const counter = useCounterStore();
 
 console.log(counter.ability);
 
-import { useNow } from '@vueuse/core'
+import { useNow } from "@vueuse/core";
 
-const now = useNow()
+const now = useNow();
 </script>
 
 <template>
     <div>
         {{ now.toLocaleTimeString() }}
+    </div>
+    <div>OKOKOKOOK</div>
+    <div>
+        <div>OKOKOKOOK</div>
+        OKOKOKOOK
     </div>
     <main>Home</main>
     {{ $t("test") }}
