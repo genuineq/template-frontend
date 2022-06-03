@@ -7,6 +7,6 @@ module.exports = {
         require("@tailwindcss/forms")({
             strategy: "class",
         }),
-        require('@formkit/themes/tailwindcss')
+        require("@formkit/themes/tailwindcss"),
     ],
 };
