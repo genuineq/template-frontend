@@ -1,53 +1,54 @@
 <template>
     <div class="container mx-auto flex flex-col items-center justify-center">
-        <h1>Recover passwoord form</h1>
-        <form @submit.prevent="submitForm">
-            <fieldset class="flex flex-col items-center justify-center gap-y-3">
-                <legend>Basic input form</legend>
-                <BaseInput
-                    label="Email"
-                    type="email"
-                    v-model="email"
-                    :error="validationEmail.join(',')"
-                />
-            </fieldset>
-
-            <button class="mt-2 rounded-xl bg-blue-800 p-3 text-white" type="submit">Submit</button>
-        </form>
+        <FormKit
+            type="form"
+            v-model="recoverForm"
+            submit-label="Recover"
+            :errors="generalError"
+            @submit="submitHandler"
+        >
+            <h1>Recover password!</h1>
+            <p class="flex">
+                You can put any type of element inside a form, not just FormKit inputs (although
+                only FormKit inputs are included with the submission).
+            </p>
+            <hr />
+            <FormKit
+                type="email"
+                name="email"
+                label="Email"
+                placeholder="jane@example.com"
+                validation="required|email"
+                :errors="validationEmail"
+            />
+        </FormKit>
     </div>
 </template>
 
 <script setup lang="ts">
-import BaseInput from "@/components/form/BaseInput.vue";
 import { ref } from "vue";
 import { useAxios } from "@vueuse/integrations/useAxios";
 
-const email = ref<string>("");
+const recoverForm = ref<{email: string}>({
+    email: ''
+});
 
 const validationEmail = ref<string[]>([]);
 
-function validateForm() {
-    let errors: string[] = [];
-    if (email.value === "") {
-        errors.push("The email is necessary");
-    }
+const generalError = ref<string[]>([]);
 
-    return errors;
-}
-
-async function submitForm(): Promise<void> {
-    validationEmail.value = validateForm();
-    if (validationEmail.value.length !== 0) {
-        return;
-    }
-
+async function submitHandler(recoverForm: { email: string }): Promise<void> {
     const { data, error } = await useAxios("recover-password", {
         method: "POST",
-        data: { email: email.value },
+        data: recoverForm,
     });
 
-    if (error.value) {
-        validationEmail.value = error.value?.response?.data.errors;
+   if (error.value) {
+        if (error.value.response?.data.message) {
+            generalError.value.push(error.value.response.data.message);
+        } else {
+            validationEmail.value = error.value?.response?.data.errors;
+        }
     } else {
         console.log(data.value);
     }
