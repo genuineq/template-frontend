@@ -33,6 +33,7 @@ const buttonClassification = {
 export const config = {
     // the global key will apply to all inputs
     global: {
+        input: "outline-none",
         outer: "mb-5 formkit-disabled:opacity-50",
         help: "text-xs text-gray-500",
         messages: "list-none p-0 mt-1 mb-0",
