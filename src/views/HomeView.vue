@@ -6,6 +6,7 @@ import BaseModal from "@/components/common/BaseModal.vue";
 import { ref } from "vue";
 import type { Test } from "@/models/common";
 import { useCounterStore } from "@/stores/counter";
+import { useNow } from "@vueuse/core";
 
 const selectedRadio = ref<number>(0);
 const testRadioOptions = ref<{ label: string; value: number }[]>([
@@ -29,64 +30,24 @@ const counter = useCounterStore();
 
 console.log(counter.ability);
 
-import { useNow } from "@vueuse/core";
-
 const now = useNow();
-
-const inputTypes = [
-    "button",
-    "checkbox",
-    "color",
-    "date",
-    "datetime-local",
-    "email",
-    "file",
-    "month",
-    "number",
-    "password",
-    "radio",
-    "range",
-    "search",
-    "select",
-    "submit",
-    "tel",
-    "text",
-    "textarea",
-    "time",
-    "url",
-    "week",
-];
-const inputOptions = {
-    checkbox: ["I like Tailwind", "I also like FormKit", "I like other things too"],
-    radio: ["I like Tailwind", "I like FormKit", "I like everything"],
-    select: ["I like Tailwind", "I like FormKit", "I like everything"],
-};
 </script>
 
 <template>
-    <div>
+    <!-- <FormKit
+        type="form"
+        v-model="formData"
+        :form-class="submitted ? 'hide' : 'show'"
+        submit-label="Register"
+        :submit-attrs="{
+            'input-class': 'bg-blue-400 text-2xl',
+        }"
+        @submit="submitHandler"
+    > -->
+
+    <div class="test">
         {{ now.toLocaleTimeString() }}
     </div>
-    <FormKit
-        v-for="type in inputTypes"
-        :key="type"
-        :label="`This is a ${type} input`"
-        :type="type"
-        :placeholder="`${type} input placeholder`"
-        :options="inputOptions[type] ? inputOptions[type] : null"
-        :help="`Help text for the ${type} input`"
-        :multiple="type === 'file'"
-        :disabled="true"
-        :validation="type === 'email' ? 'required|email' : 'required'"
-        :validation-visibility="type === 'email' ? 'live' : 'blur'"
-        :validation-label="type"
-    />
-    <div>OKOKOKOOK</div>
-    <div>
-        <div>OKOKOKOOK</div>
-        OKOKOKOOK
-    </div>
-    <main>Home</main>
     {{ $t("test") }}
     <div>
         <button
