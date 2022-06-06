@@ -4,7 +4,7 @@
             type="form"
             v-model="recoverForm"
             submit-label="Recover"
-            :errors="generalError"
+            :errors="generalErrors"
             @submit="submitHandler"
         >
             <h1>Recover password!</h1>
@@ -29,23 +29,33 @@
 import { ref } from "vue";
 import { useAxios } from "@vueuse/integrations/useAxios";
 
-const recoverForm = ref<{email: string}>({
-    email: ''
+const recoverForm = ref<{ email: string }>({
+    email: "",
 });
 
 const validationEmail = ref<string[]>([]);
 
-const generalError = ref<string[]>([]);
+const generalErrors = ref<string[]>([]);
 
-async function submitHandler(recoverForm: { email: string }): Promise<void> {
+/**
+ * Function used to submit the recover password form.
+ * @param { { email: ""} } recoverData the data that is going to be submitted to the backend.
+ */
+async function submitHandler(recoverData: { email: string }): Promise<void> {
+    /**
+     * Make the api call and extract data and error from the response.
+     */
     const { data, error } = await useAxios("recover-password", {
         method: "POST",
-        data: recoverForm,
+        data: recoverData,
     });
 
-   if (error.value) {
+    /**
+     * If there is an error, show it, otherwise, use the data for further operations.
+     */
+    if (error.value) {
         if (error.value.response?.data.message) {
-            generalError.value.push(error.value.response.data.message);
+            generalErrors.value.push(error.value.response.data.message);
         } else {
             validationEmail.value = error.value?.response?.data.errors;
         }

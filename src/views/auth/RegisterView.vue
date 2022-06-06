@@ -31,26 +31,24 @@
                 validation="required|email"
                 :errors="validationErrors.email"
             />
-            <div class="double">
-                <FormKit
-                    type="password"
-                    name="password"
-                    label="Password"
-                    validation="required|length:6"
-                    placeholder="Your password"
-                    help="Choose an account password"
-                    :errors="validationErrors.password"
-                />
-                <FormKit
-                    type="password"
-                    name="password_confirm"
-                    label="Confirm password"
-                    placeholder="Confirm password"
-                    validation="required|confirm"
-                    help="Choose an account password"
-                    :errors="validationErrors.password_confirm"
-                />
-            </div>
+            <FormKit
+                type="password"
+                name="password"
+                label="Password"
+                validation="required|length:6"
+                placeholder="Your password"
+                help="Choose an account password"
+                :errors="validationErrors.password"
+            />
+            <FormKit
+                type="password"
+                name="password_confirm"
+                label="Confirm password"
+                placeholder="Confirm password"
+                validation="required|confirm"
+                help="Choose an account password"
+                :errors="validationErrors.password_confirm"
+            />
             <FormKit
                 type="checkbox"
                 name="tandc"
@@ -76,22 +74,26 @@ const registerForm = ref<RegisterForm>({
     tandc: false,
 });
 
-const validationErrors = ref<RegisterFormValidation>({
-    email: [],
-    password: [],
-    password_confirm: [],
-    name: [],
-    tandc: [],
-});
+const validationErrors = ref<RegisterFormValidation>({});
 
 const generalError = ref<string[]>([]);
 
+/**
+ * Function used to submit the register form.
+ * @param {RegisterForm} registerData the data that is going to be submitted to the backend.
+ */
 async function submitHandler(registerData: RegisterForm): Promise<void> {
+    /**
+     * Make the api call and extract data and error from the response.
+     */
     const { data, error } = await useAxios("register", {
         method: "POST",
         data: registerData,
     });
 
+    /**
+     * If there is an error, show it, otherwise, use the data for further operations.
+     */
     if (error.value) {
         if (error.value.response?.data.message) {
             generalError.value.push(error.value.response.data.message);

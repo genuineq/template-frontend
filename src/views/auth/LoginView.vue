@@ -46,16 +46,27 @@ const loginForm = ref<LoginForm>({
     password: "",
 });
 
-const validationErrors = ref<LoginFormValidation>({ email: [], password: [] });
+const validationErrors = ref<LoginFormValidation>({});
 
 const generalError = ref<string[]>([]);
 
+/**
+ * Function used to submit the recover password form.
+ * @param {LoginForm} loginData the data that is going to be submitted to the backend.
+ */
 async function submitHandler(loginData: LoginForm): Promise<void> {
+    /**
+     * Make the api call and extract data and error from the response.
+     */
     const { data, error } = await useAxios("login", {
         method: "POST",
         data: loginData,
     });
 
+    /**
+     * If there is an error, show it, otherwise
+     * set the auth token in the pinia store.
+     */
     if (error.value) {
         if (error.value.response?.data.message) {
             generalError.value.push(error.value.response.data.message);
