@@ -51,15 +51,12 @@ const validationErrors = ref<LoginFormValidation>({ email: [], password: [] });
 const generalError = ref<string[]>([]);
 
 async function submitHandler(loginData: LoginForm): Promise<void> {
-    let login = loginData;
-    login.email = "";
     const { data, error } = await useAxios("login", {
         method: "POST",
-        data: login,
+        data: loginData,
     });
 
     if (error.value) {
-        console.log(error.value.response);
         if (error.value.response?.data.message) {
             generalError.value.push(error.value.response.data.message);
         } else {
