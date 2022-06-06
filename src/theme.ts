@@ -30,7 +30,7 @@ const buttonClassification = {
 // export our definitions using our above
 // templates and declare one-offs and
 // overrides as needed.
-export const config = {
+export const configTheme = {
     // the global key will apply to all inputs
     global: {
         input: "outline-none",
