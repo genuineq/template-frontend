@@ -1,6 +1,9 @@
 import { defineStore } from "pinia";
 import { useLocalStorage } from "@vueuse/core";
 
+/**
+ * This is an options api type of store.
+ */
 export const useCounterStore = defineStore({
     id: "counter",
     state: () =>
