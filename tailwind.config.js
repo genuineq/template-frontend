@@ -1,5 +1,10 @@
 module.exports = {
-    content: ["./index.html", "./src/**/*.{vue,js,ts,jsx,tsx}", "./src/theme.ts", "./formkit.config.ts"],
+    content: [
+        "./index.html",
+        "./src/**/*.{vue,js,ts,jsx,tsx}",
+        "./src/theme.ts",
+        "./formkit.config.ts",
+    ],
     theme: {
         extend: {},
     },

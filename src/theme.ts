@@ -24,7 +24,7 @@ const boxClassification = {
 };
 const buttonClassification = {
     wrapper: "mb-1",
-    input: "bg-blue-500 hover:bg-blue-700 text-white text-sm font-normal py-3 px-5 rounded",
+    input: "bg-blue-500 hover:bg-blue-700 text-white text-sm font-normal py-3 px-5 rounded flex items-center gap-x-2",
 };
 
 // export our definitions using our above

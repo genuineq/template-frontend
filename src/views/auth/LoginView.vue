@@ -30,6 +30,7 @@
                 :errors="validationErrors.password"
             />
         </FormKit>
+        <FormKit type="submit" label="Checkout my label" help="You can use the label prop." />
     </div>
 </template>
 
