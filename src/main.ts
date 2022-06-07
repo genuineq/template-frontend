@@ -17,6 +17,6 @@ configAxios();
 app.use(i18n);
 app.use(createPinia());
 app.use(router);
-app.use(plugin, defaultConfig({ config }));
+app.use(plugin, defaultConfig(config));
 
 app.mount("#app");
