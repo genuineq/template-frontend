@@ -1,19 +1,11 @@
 <script setup lang="ts">
 import BaseSelect from "@/components/form/BaseSelect.vue";
 import BaseToggle from "@/components/form/BaseToggle.vue";
-import BaseRadioGroup from "@/components/form/BaseRadioGroup.vue";
 import BaseModal from "@/components/common/BaseModal.vue";
 import { ref } from "vue";
 import type { Test } from "@/models/common";
 import { useCounterStore } from "@/stores/counter";
 import { useNow } from "@vueuse/core";
-
-const selectedRadio = ref<number>(0);
-const testRadioOptions = ref<{ label: string; value: number }[]>([
-    { label: "Yes", value: 1 },
-    { label: "No", value: 0 },
-    { label: "Maybe", value: 0.5 },
-]);
 
 const selectOptions = ref<Test[]>([
     { key: 1, label: "Yes", value: 1 },
