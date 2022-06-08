@@ -30,13 +30,19 @@ npm run test:unit
 npm run lint
 ```
 
+### Format with [Prettier](https://prettier.io/)
+
+```sh
+npm run lint
+```
+
 ## Customize configuration
 
 See [Vite Configuration Reference](https://vitejs.dev/config/).
 
 ## Recommended IDE Setup
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=johnsoncodehk.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=johnsoncodehk.vscode-typescript-vue-plugin).
+[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=vue.vscode-typescript-vue-plugin).
 
 ### Typescript support
 
@@ -58,10 +64,15 @@ If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has a
 
 Framework agnostic bundler that is a leaner and faster version of webpack. Good vue support through a multitude of plugins.
 
-### Design frameworks: Tailwind and HeadlessUi
+### Design frameworks:
+#### Tailwind
+Utility classes for fast prototyping
 
--   TailwindCss: utility classes for fast prototyping
--   HeadlessUi: vue component framework that includes components that are fully unstyled, but feature and accessibility ready. Styling can be done with tailwind as they are from the same publisher.
+#### FormKit
+A Vue form building framework that simplifies form structure, generation, validation, theming, submission, error handling, and more.
+
+#### HeadlessUi
+Vue component framework that includes components that are fully unstyled, but feature and accessibility ready. Styling can be done with tailwind as they are from the same publisher.
 
 ### Routing with vue router 4
 
@@ -88,13 +99,9 @@ There is a composable called useAxios that is a wrapper for axios itself for eas
 With the help of the useLocalStorage composable, we have reactive and persisted state in pinia.
 
 ### Reusable components
+Most of them are from formkit, but additionaly:
 
 #### - Form components
-
--   Input
--   Checkbox
--   Radio
--   RadioGroup: based on the headless ui radio group component
 -   Select: based on the headless ui combobox component, wip on some design stuff
 -   Toggle: based on the headless ui switch component
 
@@ -102,11 +109,10 @@ With the help of the useLocalStorage composable, we have reactive and persisted 
 
 -   Modal: functional, but not ready
 -   Alert: not implemented yet
--   Tabs: not implemented yet
 
 ### ESlint and Prettier setup
 
-For linting I have used eslint and for formatting I have used prettier. Both have config files for overrides in the root of the folder. In addition to those two files, there is an additional file calld .editorconfig that also does some formating for us on save.
+For linting I have used eslint and for formatting I have used prettier. Both have config files for overrides in the root of the folder. In addition to those two files, there is an additional file called .editorconfig that also does some formating for us on save.
 
 ### Common auth routes already done (login, register, recover and reset password, logout)
 
@@ -125,6 +131,8 @@ I have implemented a minimal setup for all the basic auth flow. The requests hav
 -   @vueuse/core: ^8.2.5
 -   @vueuse/integrations: ^8.2.5
 -   uuid: ^8.3.2
+-   @formkit/themes": ^1.0.0-beta.8,
+-   @formkit/vue": ^1.0.0-beta.8,
 
 #### Main dev dependencies
 
@@ -163,7 +171,24 @@ I have implemented a minimal setup for all the basic auth flow. The requests hav
 -   stores: contains pinia stores, each file is a store
 -   utils: diverse utility functions
 -   views: all the pages
+-   theme.ts: theming file for formkit using tailwind utility classes
+-   main.ts: vue starting point file
+-   shims.d.ts: vue specific file to enable typescript
+-   i18n.ts: internationalization plugin file
 
 ### How to use the template
 
 I have set the project up in github as a template. Instead of cloning the project, github provides a button where you can start a new repository from this template.
+
+### Environment variables
+No environment variables until now.
+
+### Docker setup
+TODO
+
+
+# Things to figure out for the template
+- Issue in github regarding useLocalStorage in pinia store
+- Issue in github regarding tailwindcss vs code extension not working in .ts files
+- Issue in github regarding formkit @submit button
+- FormKit Pro: they are currently working on further syntetic inputs like the following: "toggle, dropdown, autocomplete, tag list, repeater, multi-step wizard, star rating, button group, date range picker. After that we'll continue to roll out more." We could implement our own stuff until these get out. Unfortunately the pro version is going to be paid, but having every type of input from the same provider would be nice.
