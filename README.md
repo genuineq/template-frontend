@@ -113,7 +113,8 @@ Most of them are from formkit, but additionaly:
 
 #### - Common components
 
--   Modal: functional, but not ready
+-   Modal (still needs refinements as this is the basic example from headless ui):
+    -   props: opened (if the modal should be opened or not)
 -   Alert: not implemented yet
 
 ### ESlint and Prettier setup
@@ -198,5 +199,4 @@ TODO
 
 -   Issue in github regarding useLocalStorage in pinia store
 -   Issue in github regarding tailwindcss vs code extension not working in .ts files
--   Issue in github regarding formkit @submit button
 -   FormKit Pro: they are currently working on further syntetic inputs like the following: "toggle, dropdown, autocomplete, tag list, repeater, multi-step wizard, star rating, button group, date range picker. After that we'll continue to roll out more." We could implement our own stuff until these get out. Unfortunately the pro version is going to be paid, but having every type of input from the same provider would be nice.
