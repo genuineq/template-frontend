@@ -5,7 +5,6 @@
             v-model="registerForm"
             submit-label="Register"
             @submit="submitHandler"
-            :errors="generalError"
         >
             <h1>Register!</h1>
             <hr />
@@ -16,7 +15,6 @@
                 placeholder="Jane Doe"
                 help="What do people call you?"
                 validation="required"
-                :errors="validationErrors.name"
             />
             <FormKit
                 type="email"
@@ -25,7 +23,6 @@
                 placeholder="jane@example.com"
                 help="What email should we use?"
                 validation="required|email"
-                :errors="validationErrors.email"
             />
             <FormKit
                 type="password"
@@ -34,7 +31,6 @@
                 validation="required|length:6"
                 placeholder="Your password"
                 help="Choose an account password"
-                :errors="validationErrors.password"
             />
             <FormKit
                 type="password"
@@ -43,7 +39,6 @@
                 placeholder="Confirm password"
                 validation="required|confirm"
                 help="Choose an account password"
-                :errors="validationErrors.password_confirm"
             />
             <FormKit
                 type="checkbox"
@@ -51,7 +46,6 @@
                 label="TandC"
                 validation="accepted"
                 help="You have to accept"
-                :errors="validationErrors.tandc"
             />
         </FormKit>
     </div>
@@ -60,7 +54,7 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import { useAxios } from "@vueuse/integrations/useAxios";
-import type { RegisterForm, RegisterFormValidation } from "@/models/register";
+import type { RegisterForm } from "@/models/register";
 
 const registerForm = ref<RegisterForm>({
     email: "",
@@ -70,15 +64,11 @@ const registerForm = ref<RegisterForm>({
     tandc: false,
 });
 
-const validationErrors = ref<RegisterFormValidation>({});
-
-const generalError = ref<string[]>([]);
-
 /**
  * Function used to submit the register form.
  * @param {RegisterForm} registerData the data that is going to be submitted to the backend.
  */
-async function submitHandler(registerData: RegisterForm): Promise<void> {
+async function submitHandler(registerData: RegisterForm, node: any): Promise<void> {
     /**
      * Make the api call and extract data and error from the response.
      */
@@ -91,11 +81,15 @@ async function submitHandler(registerData: RegisterForm): Promise<void> {
      * If there is an error, show it, otherwise, use the data for further operations.
      */
     if (error.value) {
-        if (error.value.response?.data.message) {
-            generalError.value.push(error.value.response.data.message);
-        } else {
-            validationErrors.value = error.value?.response?.data.errors;
-        }
+        /**
+         * The first argument of the function sets form wide errors and takes an array.
+         * The second arguments sets input specific errors and takes a key value object.
+         * The key being the name of the input and the value being an array of errors.
+         */
+        node.setErrors(
+            error.value?.response?.data.message,
+            error.value?.response?.data.errors
+        )
     } else {
         console.log(data.value);
     }

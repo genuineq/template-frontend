@@ -5,7 +5,6 @@
             v-model="resetForm"
             submit-label="Reset"
             @submit="submitHandler"
-            :errors="generalErrors"
         >
             <h1>Reset!</h1>
             <hr />
@@ -16,7 +15,6 @@
                 validation="required|length:6"
                 placeholder="Your password"
                 help="Choose an account password"
-                :errors="validationErrors.password"
             />
             <FormKit
                 type="password"
@@ -25,7 +23,6 @@
                 placeholder="Confirm password"
                 validation="required|confirm"
                 help="Choose an account password"
-                :errors="validationErrors.password_confirm"
             />
         </FormKit>
     </div>
@@ -35,7 +32,7 @@
 import { ref } from "vue";
 import { useAxios } from "@vueuse/integrations/useAxios";
 import { useRoute } from "vue-router";
-import type { ResetForm, ResetFormValidation } from "@/models/reset";
+import type { ResetForm } from "@/models/reset";
 
 const route = useRoute();
 
@@ -44,15 +41,11 @@ const resetForm = ref<ResetForm>({
     password_confirm: "",
 });
 
-const validationErrors = ref<ResetFormValidation>({});
-
-const generalErrors = ref<string[]>([]);
-
 /**
  * Function used to submit the reset password form.
  * @param {ResetForm} resetData the data that is going to be submitted to the backend.
  */
-async function submitHandler(resetData: ResetForm): Promise<void> {
+async function submitHandler(resetData: ResetForm, node: any): Promise<void> {
     /**
      * Make the api call and extract data and error from the response.
      */
@@ -65,11 +58,15 @@ async function submitHandler(resetData: ResetForm): Promise<void> {
      * If there is an error, show it, otherwise, use the data for further operations.
      */
     if (error.value) {
-        if (error.value.response?.data.message) {
-            generalErrors.value.push(error.value.response.data.message);
-        } else {
-            validationErrors.value = error.value?.response?.data.errors;
-        }
+        /**
+         * The first argument of the function sets form wide errors and takes an array.
+         * The second arguments sets input specific errors and takes a key value object.
+         * The key being the name of the input and the value being an array of errors.
+         */
+        node.setErrors(
+            error.value?.response?.data.message,
+            error.value?.response?.data.errors
+        )
     } else {
         console.log(data.value);
     }

@@ -4,7 +4,6 @@
             type="form"
             v-model="recoverForm"
             submit-label="Recover"
-            :errors="generalErrors"
             @submit="submitHandler"
         >
             <h1>Recover password!</h1>
@@ -15,7 +14,6 @@
                 label="Email"
                 placeholder="jane@example.com"
                 validation="required|email"
-                :errors="validationEmail"
             />
         </FormKit>
     </div>
@@ -29,15 +27,11 @@ const recoverForm = ref<{ email: string }>({
     email: "",
 });
 
-const validationEmail = ref<string[]>([]);
-
-const generalErrors = ref<string[]>([]);
-
 /**
  * Function used to submit the recover password form.
  * @param { { email: ""} } recoverData the data that is going to be submitted to the backend.
  */
-async function submitHandler(recoverData: { email: string }): Promise<void> {
+async function submitHandler(recoverData: { email: string }, node: any): Promise<void> {
     /**
      * Make the api call and extract data and error from the response.
      */
@@ -50,11 +44,15 @@ async function submitHandler(recoverData: { email: string }): Promise<void> {
      * If there is an error, show it, otherwise, use the data for further operations.
      */
     if (error.value) {
-        if (error.value.response?.data.message) {
-            generalErrors.value.push(error.value.response.data.message);
-        } else {
-            validationEmail.value = error.value?.response?.data.errors;
-        }
+        /**
+         * The first argument of the function sets form wide errors and takes an array.
+         * The second arguments sets input specific errors and takes a key value object.
+         * The key being the name of the input and the value being an array of errors.
+         */
+        node.setErrors(
+            error.value?.response?.data.message,
+            error.value?.response?.data.errors
+        )
     } else {
         console.log(data.value);
     }

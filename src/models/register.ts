@@ -5,11 +5,3 @@ export interface RegisterForm {
     name: string;
     tandc: boolean;
 }
-
-export interface RegisterFormValidation {
-    email?: string[];
-    password?: string[];
-    name?: string[];
-    password_confirm?: string[];
-    tandc?: string[];
-}
