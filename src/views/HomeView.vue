@@ -61,7 +61,6 @@ const now = useNow();
     <BaseModal :opened="testModal" @close="testModal = false">
         <template v-slot:title> TITLE </template>
     </BaseModal>
-    <BaseRadioGroup :options="testRadioOptions" v-model="selectedRadio" name="testRadio" />
     <BaseSelect v-model="selected" :options="selectOptions" />
     <BaseToggle v-model="checked" labelLeft="Da" labelRight="Nu" />
 </template>
