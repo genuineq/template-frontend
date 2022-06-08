@@ -16,10 +16,10 @@ const addPrefixToSubmitButtons = (inputNode) => {
                         prefix: {
                             children: [
                                 {
-                                    $el: 'img',
+                                    $el: "img",
                                     attrs: {
-                                        class: 'hidden formkit-loading:block',
-                                        src: '/src/assets/spinner.gif',
+                                        class: "hidden formkit-loading:block",
+                                        src: "/src/assets/spinner.gif",
                                         width: 15,
                                         height: 15,
                                     },

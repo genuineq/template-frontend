@@ -65,13 +65,17 @@ If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has a
 Framework agnostic bundler that is a leaner and faster version of webpack. Good vue support through a multitude of plugins.
 
 ### Design frameworks:
+
 #### Tailwind
+
 Utility classes for fast prototyping
 
 #### FormKit
+
 A Vue form building framework that simplifies form structure, generation, validation, theming, submission, error handling, and more.
 
 #### HeadlessUi
+
 Vue component framework that includes components that are fully unstyled, but feature and accessibility ready. Styling can be done with tailwind as they are from the same publisher.
 
 ### Routing with vue router 4
@@ -99,9 +103,11 @@ There is a composable called useAxios that is a wrapper for axios itself for eas
 With the help of the useLocalStorage composable, we have reactive and persisted state in pinia.
 
 ### Reusable components
+
 Most of them are from formkit, but additionaly:
 
 #### - Form components
+
 -   Select: based on the headless ui combobox component, wip on some design stuff
 -   Toggle: based on the headless ui switch component
 
@@ -181,14 +187,16 @@ I have implemented a minimal setup for all the basic auth flow. The requests hav
 I have set the project up in github as a template. Instead of cloning the project, github provides a button where you can start a new repository from this template.
 
 ### Environment variables
+
 No environment variables until now.
 
 ### Docker setup
+
 TODO
 
-
 # Things to figure out for the template
-- Issue in github regarding useLocalStorage in pinia store
-- Issue in github regarding tailwindcss vs code extension not working in .ts files
-- Issue in github regarding formkit @submit button
-- FormKit Pro: they are currently working on further syntetic inputs like the following: "toggle, dropdown, autocomplete, tag list, repeater, multi-step wizard, star rating, button group, date range picker. After that we'll continue to roll out more." We could implement our own stuff until these get out. Unfortunately the pro version is going to be paid, but having every type of input from the same provider would be nice.
+
+-   Issue in github regarding useLocalStorage in pinia store
+-   Issue in github regarding tailwindcss vs code extension not working in .ts files
+-   Issue in github regarding formkit @submit button
+-   FormKit Pro: they are currently working on further syntetic inputs like the following: "toggle, dropdown, autocomplete, tag list, repeater, multi-step wizard, star rating, button group, date range picker. After that we'll continue to roll out more." We could implement our own stuff until these get out. Unfortunately the pro version is going to be paid, but having every type of input from the same provider would be nice.
