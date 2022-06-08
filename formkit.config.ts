@@ -3,7 +3,7 @@ import { configTheme } from "./src/theme";
 
 const addPrefixToSubmitButtons = (inputNode) => {
     inputNode.on("created", ({ payload: node }) => {
-        if (node.props.type === "submit" || node.props.type === "button") {
+        if (node.props.type === "submit") {
             // Let's retain our own copy of this definition to prevent deep object referencing
             const definition = { ...node.props.definition };
             const schema = definition.schema;
