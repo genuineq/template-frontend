@@ -4,7 +4,6 @@
             type="form"
             v-model="loginForm"
             submit-label="Login"
-            :errors="generalError"
             @submit="submitHandler"
         >
             <h1>Login!</h1>
@@ -15,7 +14,6 @@
                 label="Email"
                 placeholder="jane@example.com"
                 validation="required|email"
-                :errors="validationErrors.email"
             />
             <FormKit
                 type="password"
@@ -23,10 +21,8 @@
                 label="Password"
                 validation="required"
                 placeholder="Your password"
-                :errors="validationErrors.password"
             />
         </FormKit>
-        <FormKit type="submit" label="Checkout my label" help="You can use the label prop." />
     </div>
 </template>
 
@@ -34,7 +30,7 @@
 import { ref } from "vue";
 import { useAxios } from "@vueuse/integrations/useAxios";
 import { useAuthStore } from "@/stores/auth";
-import type { LoginForm, LoginFormValidation } from "@/models/login";
+import type { LoginForm } from "@/models/login";
 
 const auth = useAuthStore();
 
@@ -43,15 +39,11 @@ const loginForm = ref<LoginForm>({
     password: "",
 });
 
-const validationErrors = ref<LoginFormValidation>({});
-
-const generalError = ref<string[]>([]);
-
 /**
  * Function used to submit the recover password form.
  * @param {LoginForm} loginData the data that is going to be submitted to the backend.
  */
-async function submitHandler(loginData: LoginForm): Promise<void> {
+async function submitHandler(loginData: LoginForm, node: any): Promise<void> {
     /**
      * Make the api call and extract data and error from the response.
      */
@@ -65,11 +57,15 @@ async function submitHandler(loginData: LoginForm): Promise<void> {
      * set the auth token in the pinia store.
      */
     if (error.value) {
-        if (error.value.response?.data.message) {
-            generalError.value.push(error.value.response.data.message);
-        } else {
-            validationErrors.value = error.value?.response?.data.errors;
-        }
+        /**
+         * The first argument of the function sets form wide errors and takes an array.
+         * The second arguments sets input specific errors and takes a key value object.
+         * The key being the name of the input and the value being an array of errors.
+         */
+        node.setErrors(
+            error.value?.response?.data.message,
+            error.value?.response?.data.errors
+        )
     } else {
         auth.token = data.value.data.token;
     }
