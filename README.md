@@ -33,8 +33,10 @@ npm run lint
 ### Format with [Prettier](https://prettier.io/)
 
 ```sh
-npm run lint
+npm run format
 ```
+
+#### Even though we have commands for linting and formatting. This is done automatically per file on save.
 
 ## Customize configuration
 
@@ -196,6 +198,8 @@ No environment variables until now.
 TODO
 
 # Things to figure out for the template
+
+-   TODO: de explorat posibilitati de abstractizare pentru a fi mai independenti de anumite librarii in caz ca acestea se schimba, sau vrem noi sa le schimbam.
 
 -   Issue in github regarding useLocalStorage in pinia store
 -   Issue in github regarding tailwindcss vs code extension not working in .ts files
