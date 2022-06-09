@@ -3,5 +3,5 @@ export interface RegisterForm {
     password: string;
     password_confirm: string;
     name: string;
-    tandc: boolean;
+    terms_and_conditions: boolean;
 }

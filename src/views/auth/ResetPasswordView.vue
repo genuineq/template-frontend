@@ -1,11 +1,6 @@
 <template>
     <div class="container mx-auto flex justify-center">
-        <FormKit
-            type="form"
-            v-model="resetForm"
-            submit-label="Reset"
-            @submit="submitHandler"
-        >
+        <FormKit type="form" v-model="resetForm" submit-label="Reset" @submit="submitHandler">
             <h1>Reset!</h1>
             <hr />
             <FormKit
@@ -63,10 +58,7 @@ async function submitHandler(resetData: ResetForm, node: any): Promise<void> {
          * The second arguments sets input specific errors and takes a key value object.
          * The key being the name of the input and the value being an array of errors.
          */
-        node.setErrors(
-            error.value?.response?.data.message,
-            error.value?.response?.data.errors
-        )
+        node.setErrors(error.value?.response?.data.message, error.value?.response?.data.errors);
     } else {
         console.log(data.value);
     }

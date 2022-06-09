@@ -1,11 +1,6 @@
 <template>
     <div class="container mx-auto flex justify-center">
-        <FormKit
-            type="form"
-            v-model="registerForm"
-            submit-label="Register"
-            @submit="submitHandler"
-        >
+        <FormKit type="form" v-model="registerForm" submit-label="Register" @submit="submitHandler">
             <h1>Register!</h1>
             <hr />
             <FormKit
@@ -42,8 +37,8 @@
             />
             <FormKit
                 type="checkbox"
-                name="tandc"
-                label="TandC"
+                name="terms_and_conditions"
+                label="Terms and conditions"
                 validation="accepted"
                 help="You have to accept"
             />
@@ -61,7 +56,7 @@ const registerForm = ref<RegisterForm>({
     name: "",
     password: "",
     password_confirm: "",
-    tandc: false,
+    terms_and_conditions: false,
 });
 
 /**
@@ -86,10 +81,7 @@ async function submitHandler(registerData: RegisterForm, node: any): Promise<voi
          * The second arguments sets input specific errors and takes a key value object.
          * The key being the name of the input and the value being an array of errors.
          */
-        node.setErrors(
-            error.value?.response?.data.message,
-            error.value?.response?.data.errors
-        )
+        node.setErrors(error.value?.response?.data.message, error.value?.response?.data.errors);
     } else {
         console.log(data.value);
     }

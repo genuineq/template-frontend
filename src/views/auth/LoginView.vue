@@ -1,11 +1,6 @@
 <template>
     <div class="container mx-auto flex flex-col items-center justify-center">
-        <FormKit
-            type="form"
-            v-model="loginForm"
-            submit-label="Login"
-            @submit="submitHandler"
-        >
+        <FormKit type="form" v-model="loginForm" submit-label="Login" @submit="submitHandler">
             <h1>Login!</h1>
             <hr />
             <FormKit
@@ -62,10 +57,7 @@ async function submitHandler(loginData: LoginForm, node: any): Promise<void> {
          * The second arguments sets input specific errors and takes a key value object.
          * The key being the name of the input and the value being an array of errors.
          */
-        node.setErrors(
-            error.value?.response?.data.message,
-            error.value?.response?.data.errors
-        )
+        node.setErrors(error.value?.response?.data.message, error.value?.response?.data.errors);
     } else {
         auth.token = data.value.data.token;
     }

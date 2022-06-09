@@ -41,11 +41,7 @@ const now = useNow();
         {{ now.toLocaleTimeString() }}
     </div>
     {{ $t("test") }}
-    <FormKit
-        type="button"
-        @click="testModal = true"
-        label="OpenDialog"
-    />
+    <FormKit type="button" @click="testModal = true" label="OpenDialog" />
     <BaseModal :opened="testModal" @close="testModal = false">
         <template v-slot:title> TITLE </template>
     </BaseModal>
