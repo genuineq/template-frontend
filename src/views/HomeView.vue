@@ -18,9 +18,9 @@ const checked = ref<boolean>(false);
 
 const testModal = ref(false);
 
-const counter = useCounterStore();
+// const counter = useCounterStore();
 
-console.log(counter.ability);
+// console.log(counter.counter);
 
 const now = useNow();
 </script>
@@ -41,7 +41,7 @@ const now = useNow();
         {{ now.toLocaleTimeString() }}
     </div>
     {{ $t("test") }}
-    <FormKit type="button" @click="testModal = true" label="OpenDialog" />
+    <FormKit type="button" variant="error" @click="testModal = true" label="OpenDialog" />
     <BaseModal :opened="testModal" @close="testModal = false">
         <template v-slot:title> TITLE </template>
     </BaseModal>
