@@ -1,5 +1,6 @@
 import { generateClasses } from "@formkit/themes";
 import { configTheme } from "./src/theme";
+import spinner from "@/assets/spinner.gif";
 
 const addPrefixToSubmitButtons = (inputNode: any) => {
     inputNode.on("created", ({ payload: node }: any) => {
@@ -19,7 +20,7 @@ const addPrefixToSubmitButtons = (inputNode: any) => {
                                     $el: "img",
                                     attrs: {
                                         class: "hidden formkit-loading:block",
-                                        src: "/src/assets/spinner.gif",
+                                        src: spinner,
                                         width: 15,
                                         height: 15,
                                     },

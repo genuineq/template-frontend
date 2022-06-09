@@ -1,8 +1,6 @@
 import axios from "axios";
 import { useAuthStore } from "@/stores/auth";
 
-// De explorat o abstractizare peste axios in caz ca pe viitor apare o alta librarie de genul pe care vrem sa o incercam.
-
 export function configAxios() {
     axios.defaults.baseURL = import.meta.env.VITE_API_URL;
 
