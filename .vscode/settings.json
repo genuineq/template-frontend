@@ -1,0 +1,24 @@
+{
+    "css.lint.unknownAtRules": "ignore",
+    "typescript.tsdk": "node_modules/typescript/lib",
+    "editor.bracketPairColorization.enabled": true,
+    "editor.guides.bracketPairs": "active",
+    "i18n-ally.localesPaths": ["src/locales"],
+
+    // Tailwind settings, in progress
+    // "tailwindCSS.includeLanguages": {
+    //     "javascript": "javascript",
+    //     "typescript": "typescript",
+    //     "html": "HTML"
+    // },s
+    // "editor.quickSuggestions": {
+    //     "strings": true
+    // },
+
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    // "prettier.configPath": "",
+    "eslint.probe": ["javascript", "javascriptreact", "vue"],
+    "editor.formatOnSave": false,
+    // Runs Prettier, then ESLint
+    "editor.codeActionsOnSave": ["source.formatDocument", "source.fixAll.eslint"]
+}

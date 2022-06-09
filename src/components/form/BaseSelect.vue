@@ -46,14 +46,20 @@
                             >
                                 <span
                                     class="block truncate"
-                                    :class="{ 'font-medium': selected, 'font-normal': !selected }"
+                                    :class="{
+                                        'font-medium': selected,
+                                        'font-normal': !selected,
+                                    }"
                                 >
                                     {{ option.label }}
                                 </span>
                                 <span
                                     v-if="selected"
                                     class="absolute inset-y-0 left-0 flex items-center pl-3"
-                                    :class="{ 'text-white': active, 'text-teal-600': !active }"
+                                    :class="{
+                                        'text-white': active,
+                                        'text-teal-600': !active,
+                                    }"
                                 >
                                     V
                                 </span>
