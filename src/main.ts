@@ -8,6 +8,7 @@ import { createI18n } from "@/i18n";
 import { configAxios } from "./utils/axiosConfig";
 import { plugin, defaultConfig } from "@formkit/vue";
 import config from "../formkit.config";
+import "./utils/consoleLog";
 
 const app = createApp(App);
 const i18n = createI18n();

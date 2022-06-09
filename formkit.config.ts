@@ -1,8 +1,8 @@
 import { generateClasses } from "@formkit/themes";
 import { configTheme } from "./src/theme";
 
-const addPrefixToSubmitButtons = (inputNode) => {
-    inputNode.on("created", ({ payload: node }) => {
+const addPrefixToSubmitButtons = (inputNode: any) => {
+    inputNode.on("created", ({ payload: node }: any) => {
         if (node.props.type === "submit") {
             // Let's retain our own copy of this definition to prevent deep object referencing
             const definition = { ...node.props.definition };
