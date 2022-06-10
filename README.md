@@ -110,8 +110,17 @@ Most of them are from formkit, but additionaly:
 
 #### - Form components
 
--   Select: based on the headless ui combobox component, wip on some design stuff
+-   Select: based on the headless ui combobox component, still needs some tweaks to include multiple, maybe change for vue multiselect until formkit includes the option.
+    -   props:
+        -   v-model: the currently selected option.
+        -   options: the list of options for the select. (need to type those as generic, but dont know how to do this yet)
+        -   label: the label of the select
 -   Toggle: based on the headless ui switch component
+    -   props:
+        -   v-model: whether the toggle is checked or not
+        -   labelLeft: the left label for the toggle
+        -   labelRight: the right label for the toggle
+        -   error: the error label if the toggle is not checked
 
 #### - Common components
 

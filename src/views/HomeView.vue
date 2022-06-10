@@ -7,12 +7,12 @@ import type { Test } from "@/models/common";
 import { useCounterStore } from "@/stores/counter";
 import { useNow } from "@vueuse/core";
 
-const selectOptions = ref<Test[]>([
+const selectOptions: Test[] = [
     { key: 1, label: "Yes", value: 1 },
     { key: 2, label: "No", value: 0 },
     { key: 3, label: "Maybe", value: 0.5 },
-]);
-const selected = ref<Test>(selectOptions.value[0]);
+];
+const selected = ref<Test>(selectOptions[0]);
 
 const checked = ref<boolean>(false);
 
@@ -45,6 +45,6 @@ const now = useNow();
     <BaseModal :opened="testModal" @close="testModal = false">
         <template v-slot:title> TITLE </template>
     </BaseModal>
-    <BaseSelect v-model="selected" :options="selectOptions" />
-    <BaseToggle v-model="checked" labelLeft="Da" labelRight="Nu" />
+    <BaseSelect class="pb-3" v-model="selected" :options="selectOptions" />
+    <BaseToggle v-model="checked" labelLeft="Nu" labelRight="Da" />
 </template>

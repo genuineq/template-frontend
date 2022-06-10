@@ -1,15 +1,18 @@
 <template>
-    <div class="fixed top-16 w-72">
+    <div class="w-72">
         <Combobox v-model="selected" @update:modelValue="$emit('update:modelValue', selected)">
             <div class="relative mt-1">
                 <div
-                    class="relative w-full cursor-default overflow-hidden rounded-lg bg-white text-left shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-teal-300 sm:text-sm"
+                    class="w-full overflow-hidden rounded-lg shadow-md focus:outline-none sm:text-sm"
                 >
+                    <!-- This is the combobox input text to find options -->
                     <ComboboxInput
-                        class="w-full border-none py-2 pl-3 pr-10 text-sm leading-5 text-gray-900 outline-none focus:ring-0"
+                        class="w-full py-2 pl-3 pr-10 text-sm leading-5 text-gray-900 outline-none"
                         :displayValue="(option) => (option as Test).label"
                         @change="query = $event.target.value"
                     />
+
+                    <!-- This is the combobox select icon. -->
                     <ComboboxButton class="absolute inset-y-0 right-0 flex items-center pr-2">
                         X
                     </ComboboxButton>
@@ -20,8 +23,9 @@
                     leaveTo="opacity-0"
                     @after-leave="query = ''"
                 >
+                    <!-- This is the box of options for the select. -->
                     <ComboboxOptions
-                        class="absolute mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm"
+                        class="absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg focus:outline-none sm:text-sm"
                     >
                         <div
                             v-if="filteredOptions.length === 0 && query !== ''"
@@ -30,20 +34,21 @@
                             Nothing found.
                         </div>
 
+                        <!-- The rendering for each option -->
                         <ComboboxOption
                             v-for="option in filteredOptions"
-                            as="template"
                             :key="option.key"
                             :value="option"
                             v-slot="{ selected, active }"
                         >
                             <li
-                                class="relative cursor-default select-none py-2 pl-10 pr-4"
+                                class="relative cursor-default py-2 pl-10 pr-4"
                                 :class="{
                                     'bg-teal-600 text-white': active,
                                     'text-gray-900': !active,
                                 }"
                             >
+                                <!-- Label of the option. -->
                                 <span
                                     class="block truncate"
                                     :class="{
@@ -53,6 +58,8 @@
                                 >
                                     {{ option.label }}
                                 </span>
+
+                                <!-- Whether the option is checked or not -->
                                 <span
                                     v-if="selected"
                                     class="absolute inset-y-0 left-0 flex items-center pl-3"
@@ -89,11 +96,9 @@ const props = withDefaults(
         options: Test[];
         label?: string;
         modelValue: Test;
-        error?: string;
     }>(),
     {
         label: "",
-        error: "",
     }
 );
 
@@ -104,6 +109,11 @@ defineEmits<{
 let selected = ref(props.modelValue);
 let query = ref("");
 
+/**
+ * This function is used to filter the results based on the input.
+ * If there is no value in the input, show everything, otherwise,
+ * do some processing on the query and show the results.
+ */
 let filteredOptions = computed(() =>
     query.value === ""
         ? props.options

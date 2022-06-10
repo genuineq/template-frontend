@@ -12,9 +12,8 @@
                 :checked="props.modelValue"
                 @click="$emit('update:modelValue', !props.modelValue)"
                 :class="props.modelValue ? 'bg-teal-400' : 'bg-teal-900'"
-                class="relative inline-flex h-6 w-12 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75"
+                class="relative inline-flex h-6 w-12 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none"
             >
-                <span class="sr-only">Use setting</span>
                 <span
                     aria-hidden="true"
                     :class="props.modelValue ? 'translate-x-6' : 'translate-x-0'"
@@ -37,13 +36,12 @@ import { v4 as uuidv4 } from "uuid";
 
 const props = withDefaults(
     defineProps<{
-        modelValue?: boolean;
+        modelValue: boolean;
         labelLeft?: string;
         labelRight?: string;
         error?: string;
     }>(),
     {
-        modelValue: false,
         labelLeft: "",
         labelRight: "",
         error: "",
