@@ -25,6 +25,7 @@
 import { ref } from "vue";
 import { useAxios } from "@vueuse/integrations/useAxios";
 import { useAuthStore } from "@/stores/auth";
+import { http } from "@/utils/http";
 import type { LoginForm } from "@/models/login";
 
 const auth = useAuthStore();
@@ -40,12 +41,20 @@ const loginForm = ref<LoginForm>({
  */
 async function submitHandler(loginData: LoginForm, node: any): Promise<void> {
     /**
+     * Reset errors before submitting.
+     */
+    node.setErrors([], {});
+    /**
      * Make the api call and extract data and error from the response.
      */
-    const { data, error } = await useAxios("login", {
-        method: "POST",
-        data: loginData,
-    });
+    // const { data, error } = await useAxios("login", {
+    //     method: "POST",
+    //     data: loginData,
+    // });
+    const { data, error } = await http("POST", "login", loginData);
+
+    console.log(data.value);
+    console.log(error.value);
 
     /**
      * If there is an error, show it, otherwise
