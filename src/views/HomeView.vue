@@ -2,6 +2,7 @@
 import BaseSelect from "@/components/form/BaseSelect.vue";
 import BaseToggle from "@/components/form/BaseToggle.vue";
 import BaseModal from "@/components/common/BaseModal.vue";
+import BaseAlert from "@/components/common/BaseAlert.vue";
 import { ref } from "vue";
 import type { Test } from "@/models/common";
 import { useCounterStore } from "@/stores/counter";
@@ -17,6 +18,8 @@ const selected = ref<Test>(selectOptions[0]);
 const checked = ref<boolean>(false);
 
 const testModal = ref(false);
+
+const testAlert = ref(false);
 
 // const counter = useCounterStore();
 
@@ -44,7 +47,134 @@ const now = useNow();
     <FormKit type="button" variant="error" @click="testModal = true" label="OpenDialog" />
     <BaseModal :opened="testModal" @close="testModal = false">
         <template v-slot:title> TITLE </template>
+        <template v-slot:body> This is some body text to test </template>
+        <template v-slot:footer>
+            <button
+                type="button"
+                @click="testModal = false"
+                class="rounded-xl bg-blue-300 p-2 text-white"
+            >
+                Got it, thanks!
+            </button>
+        </template>
     </BaseModal>
+    <FormKit type="button" @click="testAlert = true" label="OpenAlert" />
+    <BaseAlert
+        :opened="testAlert"
+        @close="testAlert = false"
+        alertType="green"
+        alertText="This is some sort of alert message that needs ot be longer"
+    >
+        <template v-slot:title> Alert </template>
+    </BaseAlert>
     <BaseSelect class="pb-3" v-model="selected" :options="selectOptions" />
     <BaseToggle v-model="checked" labelLeft="Nu" labelRight="Da" />
+
+    <!-- <BaseSelect class="pb-3" v-model="selected" :options="selectOptions" />
+    <BaseToggle v-model="checked" labelLeft="Nu" labelRight="Da" /><BaseSelect
+        class="pb-3"
+        v-model="selected"
+        :options="selectOptions"
+    />
+    <BaseToggle v-model="checked" labelLeft="Nu" labelRight="Da" /><BaseSelect
+        class="pb-3"
+        v-model="selected"
+        :options="selectOptions"
+    />
+    <BaseToggle v-model="checked" labelLeft="Nu" labelRight="Da" /><BaseSelect
+        class="pb-3"
+        v-model="selected"
+        :options="selectOptions"
+    />
+    <BaseToggle v-model="checked" labelLeft="Nu" labelRight="Da" /><BaseSelect
+        class="pb-3"
+        v-model="selected"
+        :options="selectOptions"
+    />
+    <BaseToggle v-model="checked" labelLeft="Nu" labelRight="Da" /><BaseSelect
+        class="pb-3"
+        v-model="selected"
+        :options="selectOptions"
+    />
+    <BaseToggle v-model="checked" labelLeft="Nu" labelRight="Da" /><BaseSelect
+        class="pb-3"
+        v-model="selected"
+        :options="selectOptions"
+    />
+    <BaseToggle v-model="checked" labelLeft="Nu" labelRight="Da" /><BaseSelect
+        class="pb-3"
+        v-model="selected"
+        :options="selectOptions"
+    />
+    <BaseToggle v-model="checked" labelLeft="Nu" labelRight="Da" /><BaseSelect
+        class="pb-3"
+        v-model="selected"
+        :options="selectOptions"
+    />
+    <BaseToggle v-model="checked" labelLeft="Nu" labelRight="Da" /><BaseSelect
+        class="pb-3"
+        v-model="selected"
+        :options="selectOptions"
+    />
+    <BaseToggle v-model="checked" labelLeft="Nu" labelRight="Da" /><BaseSelect
+        class="pb-3"
+        v-model="selected"
+        :options="selectOptions"
+    />
+    <BaseToggle v-model="checked" labelLeft="Nu" labelRight="Da" /><BaseSelect
+        class="pb-3"
+        v-model="selected"
+        :options="selectOptions"
+    />
+    <BaseToggle v-model="checked" labelLeft="Nu" labelRight="Da" /><BaseSelect
+        class="pb-3"
+        v-model="selected"
+        :options="selectOptions"
+    />
+    <BaseToggle v-model="checked" labelLeft="Nu" labelRight="Da" /><BaseSelect
+        class="pb-3"
+        v-model="selected"
+        :options="selectOptions"
+    />
+    <BaseToggle v-model="checked" labelLeft="Nu" labelRight="Da" /><BaseSelect
+        class="pb-3"
+        v-model="selected"
+        :options="selectOptions"
+    />
+    <BaseToggle v-model="checked" labelLeft="Nu" labelRight="Da" /><BaseSelect
+        class="pb-3"
+        v-model="selected"
+        :options="selectOptions"
+    />
+    <BaseToggle v-model="checked" labelLeft="Nu" labelRight="Da" /><BaseSelect
+        class="pb-3"
+        v-model="selected"
+        :options="selectOptions"
+    />
+    <BaseToggle v-model="checked" labelLeft="Nu" labelRight="Da" /><BaseSelect
+        class="pb-3"
+        v-model="selected"
+        :options="selectOptions"
+    />
+    <BaseToggle v-model="checked" labelLeft="Nu" labelRight="Da" /><BaseSelect
+        class="pb-3"
+        v-model="selected"
+        :options="selectOptions"
+    />
+    <BaseToggle v-model="checked" labelLeft="Nu" labelRight="Da" /><BaseSelect
+        class="pb-3"
+        v-model="selected"
+        :options="selectOptions"
+    />
+    <BaseToggle v-model="checked" labelLeft="Nu" labelRight="Da" /><BaseSelect
+        class="pb-3"
+        v-model="selected"
+        :options="selectOptions"
+    />
+    <BaseToggle v-model="checked" labelLeft="Nu" labelRight="Da" /><BaseSelect
+        class="pb-3"
+        v-model="selected"
+        :options="selectOptions"
+    />
+    <BaseToggle v-model="checked" labelLeft="Nu" labelRight="Da" /> -->
 </template>
