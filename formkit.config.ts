@@ -1,5 +1,6 @@
 import { generateClasses } from "@formkit/themes";
 import { configTheme } from "./src/theme";
+import { ro, en } from "@formkit/i18n";
 import spinner from "@/assets/spinner.gif";
 
 const addPrefixToSubmitButtons = (node: any) => {
@@ -62,4 +63,6 @@ export default {
         classes: generateClasses(configTheme),
     },
     plugins: [addPrefixToSubmitButtons, plugin],
+    locale: "ro",
+    locales: { ro, en },
 };
