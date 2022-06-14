@@ -48,8 +48,9 @@
 
 <script setup lang="ts">
 import { ref } from "vue";
-import { useAxios } from "@vueuse/integrations/useAxios";
+import { http } from "@/utils/http";
 import type { RegisterForm } from "@/models/register";
+import type { FormKitNode } from "@formkit/core";
 
 const registerForm = ref<RegisterForm>({
     email: "",
@@ -63,14 +64,16 @@ const registerForm = ref<RegisterForm>({
  * Function used to submit the register form.
  * @param {RegisterForm} registerData the data that is going to be submitted to the backend.
  */
-async function submitHandler(registerData: RegisterForm, node: any): Promise<void> {
+async function submitHandler(registerData: RegisterForm, node: FormKitNode): Promise<void> {
+    /**
+     * Reset errors before submitting.
+     */
+    node.setErrors([], {});
+
     /**
      * Make the api call and extract data and error from the response.
      */
-    const { data, error } = await useAxios("register", {
-        method: "POST",
-        data: registerData,
-    });
+    const { data, error } = await http("POST", "register", registerData);
 
     /**
      * If there is an error, show it, otherwise, use the data for further operations.

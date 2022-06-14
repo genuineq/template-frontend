@@ -23,10 +23,10 @@
 
 <script setup lang="ts">
 import { ref } from "vue";
-import { useAxios } from "@vueuse/integrations/useAxios";
 import { useAuthStore } from "@/stores/auth";
 import { http } from "@/utils/http";
 import type { LoginForm } from "@/models/login";
+import type { FormKitNode } from "@formkit/core";
 
 const auth = useAuthStore();
 
@@ -39,22 +39,16 @@ const loginForm = ref<LoginForm>({
  * Function used to submit the recover password form.
  * @param {LoginForm} loginData the data that is going to be submitted to the backend.
  */
-async function submitHandler(loginData: LoginForm, node: any): Promise<void> {
+async function submitHandler(loginData: LoginForm, node: FormKitNode): Promise<void> {
     /**
      * Reset errors before submitting.
      */
     node.setErrors([], {});
+
     /**
      * Make the api call and extract data and error from the response.
      */
-    // const { data, error } = await useAxios("login", {
-    //     method: "POST",
-    //     data: loginData,
-    // });
     const { data, error } = await http("POST", "login", loginData);
-
-    console.log(data.value);
-    console.log(error.value);
 
     /**
      * If there is an error, show it, otherwise

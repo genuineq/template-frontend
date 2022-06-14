@@ -25,9 +25,10 @@
 
 <script setup lang="ts">
 import { ref } from "vue";
-import { useAxios } from "@vueuse/integrations/useAxios";
+import { http } from "@/utils/http";
 import { useRoute } from "vue-router";
 import type { ResetForm } from "@/models/reset";
+import type { FormKitNode } from "@formkit/core";
 
 const route = useRoute();
 
@@ -40,13 +41,18 @@ const resetForm = ref<ResetForm>({
  * Function used to submit the reset password form.
  * @param {ResetForm} resetData the data that is going to be submitted to the backend.
  */
-async function submitHandler(resetData: ResetForm, node: any): Promise<void> {
+async function submitHandler(resetData: ResetForm, node: FormKitNode): Promise<void> {
+    /**
+     * Reset errors before submitting.
+     */
+    node.setErrors([], {});
+
     /**
      * Make the api call and extract data and error from the response.
      */
-    const { data, error } = await useAxios("reset-password", {
-        method: "POST",
-        data: { token: route.query.token, ...resetData },
+    const { data, error } = await http("POST", "reset-password", {
+        token: route.query.token,
+        ...resetData,
     });
 
     /**

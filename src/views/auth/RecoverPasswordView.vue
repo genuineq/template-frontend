@@ -16,7 +16,8 @@
 
 <script setup lang="ts">
 import { ref } from "vue";
-import { useAxios } from "@vueuse/integrations/useAxios";
+import { http } from "@/utils/http";
+import type { FormKitNode } from "@formkit/core";
 
 const recoverForm = ref<{ email: string }>({
     email: "",
@@ -26,14 +27,16 @@ const recoverForm = ref<{ email: string }>({
  * Function used to submit the recover password form.
  * @param { { email: ""} } recoverData the data that is going to be submitted to the backend.
  */
-async function submitHandler(recoverData: { email: string }, node: any): Promise<void> {
+async function submitHandler(recoverData: { email: string }, node: FormKitNode): Promise<void> {
+    /**
+     * Reset errors before submitting.
+     */
+    node.setErrors([], {});
+
     /**
      * Make the api call and extract data and error from the response.
      */
-    const { data, error } = await useAxios("recover-password", {
-        method: "POST",
-        data: recoverData,
-    });
+    const { data, error } = await http("POST", "recover-password", recoverData);
 
     /**
      * If there is an error, show it, otherwise, use the data for further operations.
