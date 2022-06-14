@@ -124,9 +124,17 @@ Most of them are from formkit, but additionaly:
 
 #### - Common components
 
--   Modal (still needs refinements as this is the basic example from headless ui):
+-   Modal:
     -   props: opened (if the modal should be opened or not)
--   Alert: not implemented yet
+    -   slots:
+        -   title
+        -   body
+        -   footer
+-   Alert:
+    -   props:
+        -   opened (if the modal should be opened or not)
+        -   alertText (the text content of the alert )
+        -   alertType (the type of the alert, success or error)
 
 ### ESlint and Prettier setup
 
@@ -200,7 +208,7 @@ I have set the project up in github as a template. Instead of cloning the projec
 
 ### Environment variables
 
-No environment variables until now.
+-   VITE_API_URL: env variable for setting up the api url
 
 ### Docker setup
 
