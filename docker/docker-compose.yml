@@ -1,0 +1,14 @@
+version: "3.5"
+
+services:
+    ### Frontend Server #########################################
+    frontend:
+        build:
+            context: .
+            args:
+                - NODE_VERSION=lts-alpine
+                - NGINX_VERSION=stable-alpine
+        volumes:
+            - ${APP_CODE_PATH_HOST}:${APP_CODE_PATH_CONTAINER}${APP_CODE_CONTAINER_FLAG}
+        ports:
+            - "${NGINX_HOST_HTTP_PORT}:80"
