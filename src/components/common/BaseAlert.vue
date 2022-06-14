@@ -14,9 +14,12 @@
                     >
                         <DialogPanel
                             class="flex w-full max-w-lg items-center justify-between gap-x-2 rounded-2xl p-4 shadow-xl"
-                            :class="[props.alertType === 'green' ? 'bg-green-500' : 'bg-red-500']"
+                            :class="[props.alertType === 'success' ? 'bg-green-500' : 'bg-red-500']"
                         >
+                            <!-- The alert text -->
                             <p class="text-left">{{ props.alertText }}</p>
+
+                            <!-- The close button -->
                             <button
                                 type="button"
                                 @click="$emit('close')"
@@ -39,13 +42,18 @@ import { watch } from "vue";
 const props = defineProps<{
     opened: boolean;
     alertText: string;
-    alertType: string;
+    alertType: "success" | "error";
 }>();
 
 const emit = defineEmits<{
     (event: "close"): void;
 }>();
 
+/**
+ * Watch the props.opened prop so that we start
+ * a timer for the component to close itself
+ * after an amount of time.
+ */
 watch(
     () => props.opened,
     () => {

@@ -62,7 +62,7 @@ const now = useNow();
     <BaseAlert
         :opened="testAlert"
         @close="testAlert = false"
-        alertType="green"
+        alertType="success"
         alertText="This is some sort of alert message that needs ot be longer"
     >
         <template v-slot:title> Alert </template>
