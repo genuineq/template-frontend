@@ -10,7 +10,7 @@
             <Switch
                 ref="toggle"
                 :checked="props.modelValue"
-                @click="$emit('update:modelValue', !props.modelValue)"
+                @update:model-value="$emit('update:modelValue', !props.modelValue)"
                 :class="props.modelValue ? 'bg-teal-400' : 'bg-teal-900'"
                 class="relative inline-flex h-6 w-12 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none"
             >
