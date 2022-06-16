@@ -5,15 +5,10 @@
     "editor.guides.bracketPairs": "active",
     "i18n-ally.localesPaths": ["src/locales"],
 
-    // Tailwind settings, in progress
-    // "tailwindCSS.includeLanguages": {
-    //     "javascript": "javascript",
-    //     "typescript": "typescript",
-    //     "html": "HTML"
-    // },s
-    // "editor.quickSuggestions": {
-    //     "strings": true
-    // },
+    "tailwindCSS.experimental.classRegex": [
+        "/\\*\\s*tw\\s*\\*/\\s*'([^']*)'",
+        "/\\*\\s*tw\\s*\\*/\\s*\"([^\"]*)\""
+    ],
 
     "editor.defaultFormatter": "esbenp.prettier-vscode",
     "eslint.probe": ["javascript", "javascriptreact", "vue"],
