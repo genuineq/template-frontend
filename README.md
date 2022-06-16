@@ -44,7 +44,18 @@ See [Vite Configuration Reference](https://vitejs.dev/config/).
 
 ## Recommended IDE Setup
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=vue.vscode-typescript-vue-plugin).
+IDE : [VSCode](https://code.visualstudio.com/)
+
+### Main extensions
+
+[Volar](https://marketplace.visualstudio.com/items?itemName=vue.volar) (and disable Vetur): main extension for vue3
+[TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=vue.vscode-typescript-vue-plugin): typescript enabler for vue 3 projects
+
+### Secondary extensions
+
+[ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint): linting extension
+[Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode): formatting extension
+[Format Code Action](https://marketplace.visualstudio.com/items?itemName=rohit-gohri.format-code-action): linting and formatting on save enabler.
 
 ### Typescript support
 
