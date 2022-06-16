@@ -4,6 +4,7 @@
         "esbenp.prettier-vscode",
         "dbaeumer.vscode-eslint",
         "vue.volar",
-        "vue.vscode-typescript-vue-plugin"
+        "vue.vscode-typescript-vue-plugin",
+        "austenc.tailwind-docs"
     ]
 }

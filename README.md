@@ -53,6 +53,9 @@ IDE : [VSCode](https://code.visualstudio.com/)
 
 ### Secondary extensions
 
+[Tailwind CSS IntelliSense](https://marketplace.visualstudio.com/items?itemName=bradlc.vscode-tailwindcss): extension used for tailwind in order to have autocompletion
+for tailwind classes, linting for errors and hover explanation for classes. One caveat. In order for tailwind to detect tailwind classes outside of html markup,
+we have to add `/*tw*/` comment in front of that string in order for tailwind to detect those classes (see theme.ts file in src folder).
 [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint): linting extension
 [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode): formatting extension
 [Format Code Action](https://marketplace.visualstudio.com/items?itemName=rohit-gohri.format-code-action): linting and formatting on save enabler.
