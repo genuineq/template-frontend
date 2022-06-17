@@ -1,7 +1,7 @@
 import { generateClasses } from "@formkit/themes";
 import { configTheme } from "./src/theme";
 import { ro, en } from "@formkit/i18n";
-import spinner from "@/assets/spinner.gif";
+import spinner from "@/assets/images/spinner.gif";
 
 const addPrefixToSubmitButtons = (node: any) => {
     if (node.props.type === "submit") {

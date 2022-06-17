@@ -3,7 +3,7 @@ import { createPinia } from "pinia";
 
 import App from "./App.vue";
 import router from "./router";
-import "@/assets/index.css";
+import "@/assets/images/index.css";
 import { createI18n } from "@/i18n";
 import { configAxios } from "./utils/axiosConfig";
 import { plugin, defaultConfig } from "@formkit/vue";

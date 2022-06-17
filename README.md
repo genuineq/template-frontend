@@ -202,8 +202,13 @@ I have implemented a minimal setup for all the basic auth flow. The requests hav
 
 ### Folder structure (src)
 
--   assets: images, css and fonts
+-   assets
+    -   images
+    -   styles
+    -   fonts
 -   components: reusable components throughout the app
+    -   common: like modals and alerts
+    -   form: synthetic inputs like toggle and select with search
 -   composables: reusable vue 3 specific functionality
 -   locales: translation files
 -   models: reusable typescript types and interfaces
