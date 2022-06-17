@@ -5,6 +5,7 @@
     "editor.guides.bracketPairs": "active",
     "i18n-ally.localesPaths": ["src/locales"],
 
+    // This setting is used to catch tailwind in .ts files without html.
     "tailwindCSS.experimental.classRegex": [
         "/\\*\\s*tw\\s*\\*/\\s*'([^']*)'",
         "/\\*\\s*tw\\s*\\*/\\s*\"([^\"]*)\""
