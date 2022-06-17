@@ -230,8 +230,5 @@ TODO
 
 # Things to figure out for the template
 
--   TODO: de explorat posibilitati de abstractizare pentru a fi mai independenti de anumite librarii in caz ca acestea se schimba, sau vrem noi sa le schimbam.
-
 -   Issue in github regarding useLocalStorage in pinia store
--   Issue in github regarding tailwindcss vs code extension not working in .ts files
 -   FormKit Pro: they are currently working on further syntetic inputs like the following: "toggle, dropdown, autocomplete, tag list, repeater, multi-step wizard, star rating, button group, date range picker. After that we'll continue to roll out more." We could implement our own stuff until these get out. Unfortunately the pro version is going to be paid, but having every type of input from the same provider would be nice.
