@@ -237,3 +237,55 @@ TODO
 
 -   Issue in github regarding useLocalStorage in pinia store
 -   FormKit Pro: they are currently working on further syntetic inputs like the following: "toggle, dropdown, autocomplete, tag list, repeater, multi-step wizard, star rating, button group, date range picker. After that we'll continue to roll out more." We could implement our own stuff until these get out. Unfortunately the pro version is going to be paid, but having every type of input from the same provider would be nice.
+
+# How to use the open api generator
+
+## Installation
+
+Because the npm installation needs java, we have to find other ways to install the open api generator.
+For MacOs we can install the openapi-generator through brew. This way the open api is installed globally and
+there is no error with java (probabil it comes with java by default?).
+
+With the open api generator installed through brew, we can run the follwing command to generate the client:
+
+```
+openapi-generator generate -i jsonplaceholder.yaml -g typescript-axios -o gen/api --config=api.json
+```
+
+-   The generate is the command
+-   -i is the input yaml configuration (jsonplaceholder.yaml is just an example)
+-   -g is the generator, in this case we want to generate a typescript-axios client
+-   -o is the output folder
+-   --config is the config file we have in the root for the generate command
+
+After we generate the client code in our repo, we have to add a line of configuration in the tsconfig.json file in the client folder:
+
+```
+"moduleResolution": "Node"
+```
+
+After we add this line we can run:
+
+```
+npm install
+```
+
+and then
+
+```
+npm run build
+```
+
+so that the api client is being installed as a dependency.
+
+After being built, we can add the dependency to the root package.json with the name specified inside
+[api.json](./api.json), like so:
+
+```
+"typescript-axios": "file:gen/api" ("pakage-name from api.json" : "file: the folder where the client is")
+```
+
+Then we have to configure the client. It takes 3 parameters: configuration object, baseURL and axios instance.
+In the axiosConfig.ts we have to create an axios instance where we set up our intercepters, etc and then pass it to the client togheter with the baseURL and for the client configuration object we pass an undefined object as we might not want to mess with that.
+
+Typescript might throw a type error when supplying the axios instance to the client. This might be because the axios from the client is a different version than the in the root package.json. These versions have to be the same in order for that error to go away.
