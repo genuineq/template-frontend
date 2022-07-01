@@ -1,6 +1,10 @@
 <template>
     <div class="w-72">
-        <Combobox v-model="selected" @update:modelValue="$emit('update:modelValue', selected)">
+        <Combobox
+            :multiple="props.multiple"
+            :modelValue="modelValue"
+            @update:modelValue="$emit('update:modelValue', $event)"
+        >
             <div class="relative mt-1">
                 <div
                     class="w-full overflow-hidden rounded-lg shadow-md focus:outline-none sm:text-sm"
@@ -8,7 +12,10 @@
                     <!-- This is the combobox input text to find options -->
                     <ComboboxInput
                         class="w-full py-2 pl-3 pr-10 text-sm leading-5 text-gray-900 outline-none"
-                        :displayValue="(option) => (option as Test).label"
+                        :displayValue="
+                            (option) =>
+                                props.multiple ? option.map((option) => option.label) : option.label
+                        "
                         @change="query = $event.target.value"
                     />
 
@@ -89,24 +96,24 @@ import {
     ComboboxOption,
     TransitionRoot,
 } from "@headlessui/vue";
-import type { Test } from "@/models/common";
 
 const props = withDefaults(
     defineProps<{
-        options: Test[];
+        options: any[];
         label?: string;
-        modelValue: Test;
+        multiple: boolean;
+        modelValue: string | any[];
     }>(),
     {
         label: "",
+        multiple: false,
     }
 );
 
 defineEmits<{
-    (event: "update:modelValue", value: Test): void;
+    (event: "update:modelValue", value: string | any[]): void;
 }>();
 
-let selected = ref(props.modelValue);
 let query = ref("");
 
 /**

@@ -4,16 +4,15 @@ import BaseToggle from "@/components/form/BaseToggle.vue";
 import BaseModal from "@/components/common/BaseModal.vue";
 import BaseAlert from "@/components/common/BaseAlert.vue";
 import { ref } from "vue";
-import type { Test } from "@/models/common";
 import { useCounterStore } from "@/stores/counter";
 import { useNow } from "@vueuse/core";
 
-const selectOptions: Test[] = [
+const selectOptions = [
     { key: 1, label: "Yes", value: 1 },
     { key: 2, label: "No", value: 0 },
     { key: 3, label: "Maybe", value: 0.5 },
 ];
-const selected = ref<Test>(selectOptions[0]);
+const selected = ref([selectOptions[0], selectOptions[1]]);
 
 const checked = ref<boolean>(false);
 
@@ -67,7 +66,7 @@ const now = useNow();
     >
         <template v-slot:title> Alert </template>
     </BaseAlert>
-    <BaseSelect class="pb-3" v-model="selected" :options="selectOptions" />
+    <BaseSelect :multiple="true" class="pb-3" v-model="selected" :options="selectOptions" />
     <BaseToggle v-model="checked" labelLeft="Nu" labelRight="Da" />
 
     <!-- <BaseSelect class="pb-3" v-model="selected" :options="selectOptions" />
