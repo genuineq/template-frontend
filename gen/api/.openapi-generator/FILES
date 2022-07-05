@@ -1,0 +1,15 @@
+.gitignore
+.npmignore
+.openapi-generator-ignore
+README.md
+api.ts
+apis/posts-api.ts
+base.ts
+common.ts
+configuration.ts
+git_push.sh
+index.ts
+models/index.ts
+models/post.ts
+package.json
+tsconfig.json

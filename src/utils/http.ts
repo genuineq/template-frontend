@@ -1,4 +1,5 @@
 import { useAxios } from "@vueuse/integrations/useAxios";
+import { axiosInstance } from "./axiosConfig";
 
 type Method = "GET" | "POST" | "PUT" | "DELETE";
 
@@ -11,10 +12,14 @@ type Method = "GET" | "POST" | "PUT" | "DELETE";
  * @returns
  */
 export const http = async (method: Method, route: string, dataObject = {}) => {
-    const { data, error, isLoading, isFinished } = await useAxios(route, {
-        method: method,
-        data: dataObject,
-    });
+    const { data, error, isLoading, isFinished } = await useAxios(
+        route,
+        {
+            method: method,
+            data: dataObject,
+        },
+        axiosInstance
+    );
 
     return { data, error, isLoading, isFinished };
 };

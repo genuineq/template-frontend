@@ -8,6 +8,8 @@
 <script setup lang="ts">
 import { useAxios } from "@vueuse/integrations/useAxios";
 import { useAuthStore } from "@/stores/auth";
+import { apiService } from "@/utils/axiosConfig";
+import { onMounted } from "vue";
 
 const auth = useAuthStore();
 
@@ -20,4 +22,9 @@ async function logout(): Promise<void> {
         auth.token = "";
     }
 }
+
+onMounted(async () => {
+    const posts = await apiService.getPosts();
+    console.log(posts);
+});
 </script>
