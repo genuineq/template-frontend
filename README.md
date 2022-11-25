@@ -1,5 +1,37 @@
 # Vue 3 framework template with Vite
 
+## Install guide
+To create a local development setup follow the next steps:
+1. Open the local `hosts` file and add the folowing content at the end of the file:
+```
+# Start of Autovantage
+127.0.0.1       app.test
+# End of Autovantage
+```
+2. Go to `docker` folder of the project
+3. Create a copy of `.env.example` document and rename the copy to `.env`
+4. In the `.env` file add the node version you want/require in the `ENV_NODE_VERSION` variable
+5. In the `.env` add the port you use for development in the `ENV_NGINX_HOST_HTTP_PORT` variable
+6. Build the container
+```
+docker-compose build
+```
+7. Start the containers
+```
+docker-compose up
+```
+8. Connect to the container:
+```
+docker-compose exec frontend bash
+```
+9. Run the following commands:
+```
+npm install
+```
+10. Finished!
+
+---
+
 ## Project Setup
 
 ```sh
@@ -38,20 +70,28 @@ npm run format
 
 #### Even though we have commands for linting and formatting. This is done automatically per file on save.
 
+---
+
 ## Customize configuration
 
 See [Vite Configuration Reference](https://vitejs.dev/config/).
+
+---
 
 ## Recommended IDE Setup
 
 IDE : [VSCode](https://code.visualstudio.com/)
 
-### Main extensions
+---
+
+## Main extensions
 
 [Volar](https://marketplace.visualstudio.com/items?itemName=vue.volar) (and disable Vetur): main extension for vue3
 [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=vue.vscode-typescript-vue-plugin): typescript enabler for vue 3 projects
 
-### Secondary extensions
+---
+
+## Secondary extensions
 
 [Tailwind CSS IntelliSense](https://marketplace.visualstudio.com/items?itemName=bradlc.vscode-tailwindcss): extension used for tailwind in order to have autocompletion
 for tailwind classes, linting for errors and hover explanation for classes. One caveat. In order for tailwind to detect tailwind classes outside of html markup,
@@ -60,12 +100,14 @@ we have to add `/*tw*/` comment in front of that string in order for tailwind to
 [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode): formatting extension
 [Format Code Action](https://marketplace.visualstudio.com/items?itemName=rohit-gohri.format-code-action): linting and formatting on save enabler.
 
-### Typescript support
+## Typescript support
 
 Created the template using the npm init vue@latest which configures typescript by default. Had to adjust the tsconfig files in order to account for
 all the issues that appeared. resolveJsonModule set to true in order to import json into typescript.
 
-#### Type Support for `.vue` Imports in TS
+---
+
+## Type Support for `.vue` Imports in TS
 
 TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=johnsoncodehk.vscode-typescript-vue-plugin) to make the TypeScript language service aware of `.vue` types.
 
@@ -76,35 +118,47 @@ If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has a
     2. Find `TypeScript and JavaScript Language Features`, right click and select `Disable (Workspace)`
 2. Reload the VSCode window by running `Developer: Reload Window` from the command palette.
 
-### Vite as a module bundler
+---
+
+## Vite as a module bundler
 
 Framework agnostic bundler that is a leaner and faster version of webpack. Good vue support through a multitude of plugins.
 
+---
+
 ### Design frameworks:
 
-#### Tailwind
+### Tailwind
 
 Utility classes for fast prototyping
 
-#### FormKit
+### FormKit
 
 A Vue form building framework that simplifies form structure, generation, validation, theming, submission, error handling, and more.
 
-#### HeadlessUi
+### HeadlessUi
 
 Vue component framework that includes components that are fully unstyled, but feature and accessibility ready. Styling can be done with tailwind as they are from the same publisher.
+
+---
 
 ### Routing with vue router 4
 
 Basic vue routing library from the vue ecosystem
 
+---
+
 ### State management with Pinia
 
 A leaner vuex with better typescript experience. Stores can be created the same way as in vuex (- mutations) or in a composition api like fashion (like setup function in options api). Each file is a store, not a module like in vuex, and there is no root store. Each store can be composed with another store.
 
+---
+
 ### Internationalization support through vue-i18n
 
 Installed plugins vue-i18n and @intlify/vite-plugin-vue-i18n to support translations. Created a root i18n file to import all the translation files into.
+
+---
 
 ### VueUse package
 
@@ -118,11 +172,13 @@ There is a composable called useAxios that is a wrapper for axios itself for eas
 
 With the help of the useLocalStorage composable, we have reactive and persisted state in pinia.
 
-### Reusable components
+---
+
+## Reusable components
 
 Most of them are from formkit, but additionaly:
 
-#### - Form components
+### - Form components
 
 -   Select: based on the headless ui combobox component, still needs some tweaks to include multiple, maybe change for vue multiselect until formkit includes the option.
     -   props:
@@ -136,7 +192,7 @@ Most of them are from formkit, but additionaly:
         -   labelRight: the right label for the toggle
         -   error: the error label if the toggle is not checked
 
-#### - Common components
+### - Common components
 
 -   Modal:
     -   props: opened (if the modal should be opened or not)
@@ -150,13 +206,19 @@ Most of them are from formkit, but additionaly:
         -   alertText (the text content of the alert )
         -   alertType (the type of the alert, success or error)
 
+---
+
 ### ESlint and Prettier setup
 
 For linting I have used eslint and for formatting I have used prettier. Both have config files for overrides in the root of the folder. In addition to those two files, there is an additional file called .editorconfig that also does some formating for us on save.
 
+---
+
 ### Common auth routes already done (login, register, recover and reset password, logout)
 
 I have implemented a minimal setup for all the basic auth flow. The requests have been sent to the [template-backend](https://github.com/genuineq/template-backend) repo made with laravel.
+
+---
 
 ### Packages and versions
 
@@ -200,7 +262,9 @@ I have implemented a minimal setup for all the basic auth flow. The requests hav
 -   vitest: ^0.8.1,
 -   vue-tsc: ^0.33.9
 
-### Folder structure (src)
+---
+
+## Folder structure (src)
 
 -   assets
     -   images
@@ -221,26 +285,28 @@ I have implemented a minimal setup for all the basic auth flow. The requests hav
 -   shims.d.ts: vue specific file to enable typescript
 -   i18n.ts: internationalization plugin file
 
-### How to use the template
+---
+
+## How to use the template
 
 I have set the project up in github as a template. Instead of cloning the project, github provides a button where you can start a new repository from this template.
 
-### Environment variables
+---
+
+## Environment variables
 
 -   VITE_API_URL: env variable for setting up the api url
 
-### Docker setup
+---
 
-TODO
-
-# Things to figure out for the template
+## Things to figure out for the template
 
 -   Issue in github regarding useLocalStorage in pinia store
 -   FormKit Pro: they are currently working on further syntetic inputs like the following: "toggle, dropdown, autocomplete, tag list, repeater, multi-step wizard, star rating, button group, date range picker. After that we'll continue to roll out more." We could implement our own stuff until these get out. Unfortunately the pro version is going to be paid, but having every type of input from the same provider would be nice.
 
-# How to use the open api generator
+---
 
-## Installation
+## How to use the open api generator
 
 Because the npm installation needs java, we have to find other ways to install the open api generator.
 For MacOs we can install the openapi-generator through brew. This way the open api is installed globally and
